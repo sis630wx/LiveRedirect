@@ -82,7 +82,7 @@ func setupRouter(adurl string) *gin.Engine {
 			for _, value := range data {
 				//fmt.Fprintf(c.Writer, "#EXTINF:-1 tvg-logo=\"%s\" group-title=\"%s\", %s\n", value.SAvatar180, value.SGameFullName, value.SNick)
 				//fmt.Fprintf(c.Writer, "%s/huya/%v\n", getLivePrefix(c), value.LProfileRoom)
-				fmt.Fprintf(c.Writer, "%s, ", "%s/huya/%v\n",value.SNick, getLivePrefix(c), value.LProfileRoom)
+				fmt.Fprintf(c.Writer, "%s, %s/huya/%v\n",value.SNick, getLivePrefix(c), value.LProfileRoom)
 			}
 		}
 	})
