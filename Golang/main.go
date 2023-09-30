@@ -18,7 +18,6 @@ import (
 	"net/http"
 	"net/url"
 	"strconv"
-	"time"
 )
 
 func duanyan(adurl string, realurl any) string {
