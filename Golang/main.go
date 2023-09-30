@@ -43,6 +43,8 @@ func getTestVideoUrl(c *gin.Context) {
 	//fmt.Fprintln(c.Writer, "http://159.75.85.63:5680/d/ad/h264/playad.m3u8")
 	//fmt.Fprintln(c.Writer, "#EXTINF:-1 tvg-name=\"4K60PHLG-HEVC-EAC3测试\" tvg-logo=\"https://cdn.jsdelivr.net/gh/youshandefeiyang/IPTV/logo/tg.jpg\" group-title=\"4K频道\",4K60PHLG-HEVC-EAC3测试")
 	//fmt.Fprintln(c.Writer, "http://159.75.85.63:5680/d/ad/playad.m3u8")
+	
+	fmt.Fprintln(c.Writer, "虎牙轮播,#genre#\n")
 }
 
 func getLivePrefix(c *gin.Context) string {
