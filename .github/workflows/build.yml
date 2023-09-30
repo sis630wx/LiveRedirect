@@ -1,14 +1,7 @@
 name: IPTV-Go
 
 on:
-  push:
-    branches: ["main"]
-    paths:
-      - '**.go'    
-  pull_request:
-    branches: ["main"]
-    paths:
-      - '**.go'
+  workflow_dispatch:
   
 jobs:
   linux_amd64_build:
