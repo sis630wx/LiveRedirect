@@ -37,13 +37,13 @@ func getTestVideoUrl(c *gin.Context) {
 		TimeLocation = time.FixedZone("CST", 8*60*60)
 	}
 	str_time := time.Now().In(TimeLocation).Format("2006-01-02 15:04:05")
-	fmt.Fprintln(c.Writer, "#EXTM3U")
-	fmt.Fprintln(c.Writer, "#EXTINF:-1 tvg-name=\""+str_time+"\" tvg-logo=\"https://cdn.jsdelivr.net/gh/youshandefeiyang/IPTV/logo/tg.jpg\" group-title=\"列表更新时间\","+str_time)
-	fmt.Fprintln(c.Writer, "https://cdn.jsdelivr.net/gh/youshandefeiyang/testvideo/time/time.mp4")
-	fmt.Fprintln(c.Writer, "#EXTINF:-1 tvg-name=\"4K60PSDR-H264-AAC测试\" tvg-logo=\"https://cdn.jsdelivr.net/gh/youshandefeiyang/IPTV/logo/tg.jpg\" group-title=\"4K频道\",4K60PSDR-H264-AAC测试")
-	fmt.Fprintln(c.Writer, "http://159.75.85.63:5680/d/ad/h264/playad.m3u8")
-	fmt.Fprintln(c.Writer, "#EXTINF:-1 tvg-name=\"4K60PHLG-HEVC-EAC3测试\" tvg-logo=\"https://cdn.jsdelivr.net/gh/youshandefeiyang/IPTV/logo/tg.jpg\" group-title=\"4K频道\",4K60PHLG-HEVC-EAC3测试")
-	fmt.Fprintln(c.Writer, "http://159.75.85.63:5680/d/ad/playad.m3u8")
+	//fmt.Fprintln(c.Writer, "#EXTM3U")
+	//fmt.Fprintln(c.Writer, "#EXTINF:-1 tvg-name=\""+str_time+"\" tvg-logo=\"https://cdn.jsdelivr.net/gh/youshandefeiyang/IPTV/logo/tg.jpg\" group-title=\"列表更新时间\","+str_time)
+	//fmt.Fprintln(c.Writer, "https://cdn.jsdelivr.net/gh/youshandefeiyang/testvideo/time/time.mp4")
+	//fmt.Fprintln(c.Writer, "#EXTINF:-1 tvg-name=\"4K60PSDR-H264-AAC测试\" tvg-logo=\"https://cdn.jsdelivr.net/gh/youshandefeiyang/IPTV/logo/tg.jpg\" group-title=\"4K频道\",4K60PSDR-H264-AAC测试")
+	//fmt.Fprintln(c.Writer, "http://159.75.85.63:5680/d/ad/h264/playad.m3u8")
+	//fmt.Fprintln(c.Writer, "#EXTINF:-1 tvg-name=\"4K60PHLG-HEVC-EAC3测试\" tvg-logo=\"https://cdn.jsdelivr.net/gh/youshandefeiyang/IPTV/logo/tg.jpg\" group-title=\"4K频道\",4K60PHLG-HEVC-EAC3测试")
+	//fmt.Fprintln(c.Writer, "http://159.75.85.63:5680/d/ad/playad.m3u8")
 }
 
 func getLivePrefix(c *gin.Context) string {
@@ -81,8 +81,9 @@ func setupRouter(adurl string) *gin.Engine {
 			json.Unmarshal(apiRes, &res)
 			data := res.VList
 			for _, value := range data {
-				fmt.Fprintf(c.Writer, "#EXTINF:-1 tvg-logo=\"%s\" group-title=\"%s\", %s\n", value.SAvatar180, value.SGameFullName, value.SNick)
-				fmt.Fprintf(c.Writer, "%s/huya/%v\n", getLivePrefix(c), value.LProfileRoom)
+				//fmt.Fprintf(c.Writer, "#EXTINF:-1 tvg-logo=\"%s\" group-title=\"%s\", %s\n", value.SAvatar180, value.SGameFullName, value.SNick)
+				//fmt.Fprintf(c.Writer, "%s/huya/%v\n", getLivePrefix(c), value.LProfileRoom)
+				fmt.Fprintf(c.Writer, "%s, ", "%s/huya/%v\n",value.SNick, getLivePrefix(c), value.LProfileRoom)
 			}
 		}
 	})
