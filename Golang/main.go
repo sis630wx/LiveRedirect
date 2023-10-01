@@ -99,7 +99,8 @@ func setupRouter(adurl string) *gin.Engine {
 
 		c.Writer.Header().Set("Content-Type", "application/octet-stream")
 		c.Writer.Header().Set("Content-Disposition", "attachment; filename=douyuyqk.m3u")
-		getTestVideoUrl(c)
+		//getTestVideoUrl(c)
+		fmt.Fprintln(c.Writer, "斗鱼轮播,#genre#")
 
 		for i := 1; i <= pageCount; i++ {
 			apiRes, _ := yuobj.Douyuyqk("https://www.douyu.com/gapi/rkc/directory/mixList/2_208/" + strconv.Itoa(i))
@@ -109,8 +110,9 @@ func setupRouter(adurl string) *gin.Engine {
 			data := res.Data.Rl
 
 			for _, value := range data {
-				fmt.Fprintf(c.Writer, "#EXTINF:-1 tvg-logo=\"https://apic.douyucdn.cn/upload/%s_big.jpg\" group-title=\"%s\", %s\n", value.Av, value.C2name, value.Nn)
-				fmt.Fprintf(c.Writer, "%s/douyu/%v\n", getLivePrefix(c), value.Rid)
+				//fmt.Fprintf(c.Writer, "#EXTINF:-1 tvg-logo=\"https://apic.douyucdn.cn/upload/%s_big.jpg\" group-title=\"%s\", %s\n", value.Av, value.C2name, value.Nn)
+				//fmt.Fprintf(c.Writer, "%s/douyu/%v\n", getLivePrefix(c), value.Rid)
+				fmt.Fprintf(c.Writer, "%s,%s/douyu/%v\n", value.Nn, getLivePrefix(c), value.Rid)
 			}
 		}
 	})
@@ -120,7 +122,7 @@ func setupRouter(adurl string) *gin.Engine {
 		c.Writer.Header().Set("Content-Type", "application/octet-stream")
 		c.Writer.Header().Set("Content-Disposition", "attachment; filename=yylunbo.m3u")
 		//getTestVideoUrl(c)
-		fmt.Fprintln(c.Writer, "YY轮播,#genre#\n")
+		fmt.Fprintln(c.Writer, "YY轮播,#genre#")
 		
 		i := 1
 		for {
